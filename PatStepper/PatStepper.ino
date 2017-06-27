@@ -1,6 +1,5 @@
 /*********************
 
-Example code for the Adafruit RGB Character LCD Shield and Library
 
 This code displays text on the shield, and also reads the buttons on the keypad.
 When a button is pressed, the backlight changes color.
