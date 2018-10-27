@@ -95,13 +95,19 @@ void loop() {
   lcd.print(temp);
   Serial.print("|");
   lcd.setCursor(0, 2);
-  temp = thermocouple3.readInternal();
+  temp = thermocouple3.read();
+    if(isnan(temp)){
+    temp=0;
+  }
   lcd.print("Max3 temp: ") ;
   lcd.print(temp);
   Serial.print(temp);
     Serial.print("|");
   lcd.setCursor(0, 3);
-  temp = thermocouple1.readInternal();
+  temp = thermocouple1.readCelsius();
+  if(isnan(temp)){
+    temp=0;
+  }
   lcd.print("Max1 temp: ") ; 
   lcd.print(temp);
   Serial.print(temp);
