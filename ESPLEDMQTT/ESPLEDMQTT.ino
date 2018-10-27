@@ -43,7 +43,7 @@ const int mqtt_port = 1883;
 
 /**************************** FOR OTA **************************************************/
 #define SENSORNAME "test" //change this to whatever you want to call your device
-#define OTApassword "foolish101" //the password you will need to enter to upload remotely via the ArduinoIDE
+#define OTApassword "" //the password you will need to enter to upload remotely via the ArduinoIDE
 int OTAport = 8266;
 
 

@@ -26,8 +26,8 @@ RTC_DATA_ATTR int errorCount = 0;
 #define ERROR(S) Serial.print(S);
 #endif
 
-#define WIFI_SSID "WLAN"
-#define WIFI_PASS "foolish101"
+#define WIFI_SSID ""
+#define WIFI_PASS ""
 
 const char MQTT_SERVER[] = "192.168.0.6";
 const int MQTT_PORT = 1883;
