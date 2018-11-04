@@ -16,8 +16,8 @@ void outletOneOff();
 void outletTwoOn(); 
 void outletTwoOff();
 // Change this before you flash 
-const char* ssid = "WLAN"; 
-const char* password = "foolish101";
+const char* ssid = ""; 
+const char* password = "";
 boolean wifiConnected = false;
 UpnpBroadcastResponder upnpBroadcastResponder;
 Switch *lightOne = NULL; 
