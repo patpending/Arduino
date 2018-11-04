@@ -24,6 +24,7 @@
 //#include <ESP8266WiFi.h>
 // esp32 #include <WiFi.h>
 #include <PubSubClient.h>
+#define FASTLED_ALLOW_INTERRUPTS 0
 #include "FastLED.h"
 //esp32 #include <ESPmDNS.h>
 #include <WiFiUdp.h>
@@ -32,9 +33,9 @@
 
 
 /************ WIFI and MQTT Information (CHANGE THESE FOR YOUR SETUP) ******************/
-const char* ssid = "WLAN"; //type your WIFI information inside the quotes
-const char* password = "";
-const char* mqtt_server = "";
+const char* ssid = "WLAN2"; //type your WIFI information inside the quotes
+const char* password = "foolish101";
+const char* mqtt_server = "192.168.0.6";
 const char* mqtt_username = "";
 const char* mqtt_password = "";
 const int mqtt_port = 1883;
@@ -42,15 +43,15 @@ const int mqtt_port = 1883;
 
 
 /**************************** FOR OTA **************************************************/
-#define SENSORNAME "test" //change this to whatever you want to call your device
-#define OTApassword "" //the password you will need to enter to upload remotely via the ArduinoIDE
+#define SENSORNAME "landing_lights" //change this to whatever you want to call your device
+#define OTApassword "foolish101" //the password you will need to enter to upload remotely via the ArduinoIDE
 int OTAport = 8266;
 
 
 
 /************* MQTT TOPICS (change these topics as you wish)  **************************/
-const char* light_state_topic = "lights/test";
-const char* light_set_topic = "lights/test/set/set";
+const char* light_state_topic = "lights/landing";
+const char* light_set_topic = "lights/landing/set";
 
 const char* on_cmd = "ON";
 const char* off_cmd = "OFF";
@@ -67,11 +68,11 @@ const int BUFFER_SIZE = JSON_OBJECT_SIZE(10);
 
 
 /*********************************** FastLED Defintions ********************************/
-#define NUM_LEDS    16
+#define NUM_LEDS    100
 #define DATA_PIN    5
 //#define CLOCK_PIN 5
 #define CHIPSET     WS2811
-#define COLOR_ORDER GRB
+#define COLOR_ORDER BRG
 
 byte realRed = 0;
 byte realGreen = 0;
@@ -237,6 +238,11 @@ void setup_wifi() {
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
 
+  IPAddress ip(192,168,0,211);   
+  IPAddress gateway(192,168,0,1);   
+  IPAddress subnet(255,255,255,0);   
+  WiFi.config(ip, gateway, subnet);
+
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
@@ -251,7 +257,7 @@ void setup_wifi() {
 /*
   SAMPLE PAYLOAD:
   {
-    "brightness": 120,
+    "brightness": 120, 
     "color": {
       "r": 255,
       "g": 100,
