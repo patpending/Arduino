@@ -1,3 +1,4 @@
+#include </Users/patrickstrobel/Documents/arduino_keys/secrets.h>
 #include <Wire.h>
 //#include <Tone.h>
 #include <hd44780.h>
@@ -27,9 +28,9 @@
 #include <ArduinoOTA.h>
 hd44780_I2Cexp lcd;
 //************ WIFI and MQTT Information (CHANGE THESE FOR YOUR SETUP) ******************/
-const char* ssid = "WLAN2"; //type your WIFI information inside the quotes
-const char* password = "foolish101";
-const char* mqtt_server = "192.168.0.6";
+const char* ssid = WLAN; //type your WIFI information inside the quotes
+const char* password = WIFI_PASSWORD;
+const char* mqtt_server = MQTT_SERVER;
 const char* mqtt_username = "";
 const char* mqtt_password = "";
 const int mqtt_port = 1883;
@@ -41,7 +42,7 @@ const int BUFFER_SIZE = JSON_OBJECT_SIZE(10);
 
 /**************************** FOR OTA **************************************************/
 #define SENSORNAME "temp_display" //change this to whatever you want to call your device
-#define OTApassword "foolish101" //the password you will need to enter to upload remotely via the ArduinoIDE
+#define OTApassword OTA_PASSWORD //the password you will need to enter to upload remotely via the ArduinoIDE
 int OTAport = 8266;
 
 

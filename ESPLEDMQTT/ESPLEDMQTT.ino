@@ -1,3 +1,4 @@
+#include </Users/patrickstrobel/Documents/arduino_keys/secrets.h>
 #include <BearSSLHelpers.h>
 #include <CertStoreBearSSL.h>
 #include <ESP8266WiFi.h>
@@ -33,9 +34,9 @@
 
 
 /************ WIFI and MQTT Information (CHANGE THESE FOR YOUR SETUP) ******************/
-const char* ssid = "WLAN2"; //type your WIFI information inside the quotes
-const char* password = "foolish101";
-const char* mqtt_server = "192.168.0.6";
+const char* ssid = WLAN; //type your WIFI information inside the quotes
+const char* password = WIFI_PASSWORD;
+const char* mqtt_server = MQTT_SERVER;
 const char* mqtt_username = "";
 const char* mqtt_password = "";
 const int mqtt_port = 1883;
@@ -43,15 +44,15 @@ const int mqtt_port = 1883;
 
 
 /**************************** FOR OTA **************************************************/
-#define SENSORNAME "landing_lights" //change this to whatever you want to call your device
-#define OTApassword "foolish101" //the password you will need to enter to upload remotely via the ArduinoIDE
+#define SENSORNAME "fireplace" //change this to whatever you want to call your device
+#define OTApassword OTA_PASSWORD //the password you will need to enter to upload remotely via the ArduinoIDE
 int OTAport = 8266;
 
 
 
 /************* MQTT TOPICS (change these topics as you wish)  **************************/
-const char* light_state_topic = "lights/landing";
-const char* light_set_topic = "lights/landing/set";
+const char* light_state_topic = "lights/fireplace";
+const char* light_set_topic = "lights/fireplace/set";
 
 const char* on_cmd = "ON";
 const char* off_cmd = "OFF";
@@ -72,7 +73,7 @@ const int BUFFER_SIZE = JSON_OBJECT_SIZE(10);
 #define DATA_PIN    5
 //#define CLOCK_PIN 5
 #define CHIPSET     WS2811
-#define COLOR_ORDER BRG
+#define COLOR_ORDER GRB
 
 byte realRed = 0;
 byte realGreen = 0;
@@ -238,7 +239,7 @@ void setup_wifi() {
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
 
-  IPAddress ip(192,168,0,211);   
+  IPAddress ip(192,168,0,213);   
   IPAddress gateway(192,168,0,1);   
   IPAddress subnet(255,255,255,0);   
   WiFi.config(ip, gateway, subnet);
